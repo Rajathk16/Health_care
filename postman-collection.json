@@ -1,0 +1,433 @@
+{
+  "info": {
+    "_postman_id": "healthtech-pm-system",
+    "name": "HealthTech Prescription Management System",
+    "description": "Complete API collection for the HealthTech Prescription Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register Doctor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"dr_johnson\",\n  \"email\": \"dr.johnson@healthtech.com\",\n  \"password\": \"SecurePass123!\",\n  \"confirmPassword\": \"SecurePass123!\",\n  \"role\": \"doctor\",\n  \"first_name\": \"Michael\",\n  \"last_name\": \"Johnson\",\n  \"specialization\": \"Cardiology\",\n  \"license_number\": \"MED-2024-12345\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "register"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Register Patient",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"patient_smith\",\n  \"email\": \"john.smith@example.com\",\n  \"password\": \"PatientPass123!\",\n  \"confirmPassword\": \"PatientPass123!\",\n  \"role\": \"patient\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "register"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login Doctor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"dr_johnson\",\n  \"password\": \"SecurePass123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login Patient",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"patient_smith\",\n  \"password\": \"PatientPass123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "login"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "User Management",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/users/profile",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "profile"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"Michael\",\n  \"last_name\": \"Johnson\",\n  \"email\": \"michael.johnson@healthtech.com\",\n  \"specialization\": \"Cardiology\",\n  \"license_number\": \"MED-2024-12345\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/profile",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "profile"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Doctors",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/users/doctors",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "doctors"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get My Patients (Doctor)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/users/my-patients",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "my-patients"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Prescriptions",
+      "item": [
+        {
+          "name": "Create Prescription (Doctor)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient_id\": 2,\n  \"medication_name\": \"Aspirin\",\n  \"dosage\": \"500mg\",\n  \"frequency\": \"3 times a day after meals\",\n  \"duration\": \"7 days\",\n  \"instructions\": \"Take with food to avoid stomach upset\",\n  \"notes\": \"For general pain and fever relief\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/prescriptions",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "prescriptions"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Prescriptions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/prescriptions",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "prescriptions"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Prescription by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/prescriptions/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "prescriptions",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Prescription (Doctor)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"medication_name\": \"Ibuprofen\",\n  \"dosage\": \"400mg\",\n  \"frequency\": \"2 times a day\",\n  \"duration\": \"10 days\",\n  \"status\": \"active\",\n  \"instructions\": \"Take with meals\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/prescriptions/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "prescriptions",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Prescription (Doctor)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/prescriptions/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "prescriptions",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Prescriptions (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/prescriptions/admin/all",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "prescriptions",
+                "admin",
+                "all"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "System",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "health"
+              ]
+            }
+          }
+        },
+        {
+          "name": "API Info",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                ""
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
